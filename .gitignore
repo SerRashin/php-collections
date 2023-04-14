@@ -1,0 +1,13 @@
+/vendor/
+
+/phpunit.xml
+.phpunit.result.cache
+.phpstan/
+
+.phpunit.result.cache
+/phpunit.xml
+
+/.phpcs-cache
+/phpcs.xml
+
+.idea
