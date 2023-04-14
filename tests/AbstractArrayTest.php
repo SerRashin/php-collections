@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic;
+namespace Ser\Collections;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use Ser\Generic\TestData\AbstractArrayFixture;
-use Ser\Generic\Utils\Iterating;
+use Ser\Collections\TestData\AbstractArrayFixture;
+use Ser\Collections\Utils\Iterating;
 
 class AbstractArrayTest extends TestCase
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic\TestData;
+namespace Ser\Collections\TestData;
 
-use Ser\Generic\AbstractArray;
+use Ser\Collections\AbstractArray;
 use Traversable;
 
 class AbstractArrayFixture extends AbstractArray

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic;
+namespace Ser\Collections;
 
-use Ser\Generic\Utils\Iterating;
+use Ser\Collections\Utils\Iterating;
 
 /**
  * Abstract interface

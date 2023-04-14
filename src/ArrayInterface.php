@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic;
+namespace Ser\Collections;
 
 use ArrayAccess, Countable, IteratorAggregate;
 

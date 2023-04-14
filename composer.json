@@ -1,6 +1,6 @@
 {
-  "name": "ser/generic",
-  "description": "PHP generics collections",
+  "name": "ser/collections",
+  "description": "PHP collections with supports template",
   "keywords": ["generic", "template", "collection", "stack", "queue", "hashmap"],
   "minimum-stability": "stable",
   "license": "MIT",
@@ -12,12 +12,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "Ser\\Generic\\": "src/"
+      "Ser\\Collections\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Ser\\Generic\\": "tests/"
+      "Ser\\Collections\\": "tests/"
     }
   },
   "require": {

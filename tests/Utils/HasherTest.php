@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic\Utils;
+namespace Ser\Collections\Utils;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use Ser\Generic\TestData\Section;
+use Ser\Collections\TestData\Section;
 use stdClass;
 
 class HasherTest extends TestCase

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic;
+namespace Ser\Collections;
 
 use OutOfRangeException;
-use Ser\Generic\Exception\Errors;
+use Ser\Collections\Exception\Errors;
 use Traversable;
 
 use function array_search;

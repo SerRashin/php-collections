@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic;
+namespace Ser\Collections;
 
 use OutOfRangeException;
 use RuntimeException;
-use Ser\Generic\Exception\Errors;
-use Ser\Generic\Utils\Hasher;
+use Ser\Collections\Exception\Errors;
+use Ser\Collections\Utils\Hasher;
 use Traversable;
 
 /**

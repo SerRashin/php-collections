@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic\Utils;
+namespace Ser\Collections\Utils;
 
 /**
  * @internal

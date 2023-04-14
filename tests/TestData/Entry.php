@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic\TestData;
+namespace Ser\Collections\TestData;
 
 class Entry
 {

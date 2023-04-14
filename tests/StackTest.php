@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic;
+namespace Ser\Collections;
 
 use PHPUnit\Framework\TestCase;
-use Ser\Generic\TestData\Section;
+use Ser\Collections\TestData\Section;
 
 class StackTest extends TestCase
 {

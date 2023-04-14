@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic;
+namespace Ser\Collections;
 
 use Exception;
 use OutOfRangeException;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use Ser\Generic\TestData\Entry;
-use Ser\Generic\TestData\Section;
-use Ser\Generic\Utils\Iterating;
+use Ser\Collections\TestData\Entry;
+use Ser\Collections\TestData\Section;
+use Ser\Collections\Utils\Iterating;
 
 class DictionaryTest extends TestCase
 {

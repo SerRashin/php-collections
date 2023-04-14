@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ser\Generic\Exception;
+namespace Ser\Collections\Exception;
 
 class Errors
 {
