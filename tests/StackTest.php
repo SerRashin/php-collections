@@ -69,7 +69,7 @@ class StackTest extends TestCase
      *
      * @return void
      */
-    public function testSetWithObjects(): void
+    public function testStackWithObjects(): void
     {
         $section = new Section("Section");
 
@@ -81,10 +81,30 @@ class StackTest extends TestCase
         }
     }
 
+    public function testStackInterfaceWithObjects(): void
+    {
+        $section = new Section("Section");
+
+        $stack = $this->createStackInterface();
+        $stack->push($section);
+
+        foreach ($stack as $value) {
+            $this->assertSame($section, $value);
+        }
+    }
+
     /**
      * @return Stack<Section>
      */
     private function createStack(): Stack
+    {
+        return new Stack();
+    }
+
+    /**
+     * @return StackInterface<Section>
+     */
+    private function createStackInterface(): StackInterface
     {
         return new Stack();
     }

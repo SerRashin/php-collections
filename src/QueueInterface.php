@@ -11,10 +11,10 @@ namespace Ser\Collections;
  * @psalm-template TItem
  * @phpstan-template TItem
  *
- * @extends ArrayInterface<array-key, TItem>
- * @template-extends ArrayInterface<array-key, TItem>
+ * @extends CollectionInterface<TItem>
+ * @template-extends CollectionInterface<TItem>
  */
-interface QueueInterface extends ArrayInterface
+interface QueueInterface extends CollectionInterface
 {
     /**
      * Adds an item to the end of the queue
@@ -44,6 +44,17 @@ interface QueueInterface extends ArrayInterface
      * @phpstan-return TItem|null
      */
     public function peek(): mixed;
+
+    /**
+     * Checks if collection contains item
+     *
+     * @param TItem $item
+     * @psalm-param TItem $item
+     * @phpstan-param TItem $item
+     *
+     * @return bool
+     */
+    public function contains(mixed $item): bool;
 
 //    /**
 //     * @param TItem $item

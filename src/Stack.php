@@ -11,13 +11,13 @@ use Traversable;
  * @psalm-template TItem
  * @phpstan-template TItem
  *
- * @template-extends  AbstractArray<array-key, TItem>
+ * @template-extends  Collection<TItem>
  * @template-implements StackInterface<TItem>
  */
-class Stack extends AbstractArray implements StackInterface
+class Stack extends Collection implements StackInterface
 {
     /**
-     * @param iterable<TItem> $items
+     * @param iterable<array-key, TItem> $items
      */
     public function __construct(iterable $items = []) {
         parent::__construct($items);
@@ -65,6 +65,20 @@ class Stack extends AbstractArray implements StackInterface
         }
 
         return $this->items[$idx];
+    }
+
+    /**
+     * Checks if collection contains item
+     *
+     * @param TItem $item
+     * @psalm-param TItem $item
+     * @phpstan-param TItem $item
+     *
+     * @return bool
+     */
+    public function contains(mixed $item): bool
+    {
+        return in_array($item, $this->items, true);
     }
 
     /**

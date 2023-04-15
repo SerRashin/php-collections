@@ -17,9 +17,13 @@ namespace Ser\Collections;
  * @psalm-template TItem
  * @phpstan-template TItem
  *
- * @template-extends ArrayInterface<TKey, TItem>
+ * @extends ReadOnlyDictionaryInterface<TKey, TItem>
+ * @template-extends ReadOnlyDictionaryInterface<TKey, TItem>
+ *
+ * @extends IEnumerable<TKey, TItem>
+ * @template-extends IEnumerable<TKey, TItem>
  */
-interface DictionaryInterface extends ArrayInterface
+interface DictionaryInterface extends ReadOnlyDictionaryInterface, IEnumerable
 {
     /**
      * Add element to dictionary
@@ -38,17 +42,6 @@ interface DictionaryInterface extends ArrayInterface
     public function add(mixed $key, mixed $value): void;
 
     /**
-     * Get element from dictionary
-     *
-     * @param TKey $key
-     * @psalm-param TKey $key
-     * @phpstan-param TKey $key
-     *
-     * @return TItem|null
-     */
-    public function get(mixed $key): mixed;
-
-    /**
      * Remove element from dictionary
      *
      * @param TKey $key
@@ -58,40 +51,4 @@ interface DictionaryInterface extends ArrayInterface
      * @return void
      */
     public function remove(mixed $key): void;
-
-    /**
-     * Checks if dictionary has key
-     *
-     * @param TKey $key
-     * @psalm-param TKey $key
-     * @phpstan-param TKey $key
-     *
-     * @return bool
-     */
-    public function containsKey(mixed $key): bool;
-
-    /**
-     * Checks if dictionary contains value
-     *
-     * @param TItem $item
-     * @psalm-param TItem $item
-     * @phpstan-param TItem $item
-     *
-     * @return bool
-     */
-    public function containsValue(mixed $item): bool;
-
-    /**
-     * Get collection of keys
-     *
-     * @return Collection<TKey>
-     */
-    public function getKeys(): Collection;
-
-    /**
-     * Get collection of values
-     *
-     * @return Collection<TItem>
-     */
-    public function getValues(): Collection;
 }

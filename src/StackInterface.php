@@ -11,9 +11,10 @@ namespace Ser\Collections;
  * @psalm-template TItem
  * @phpstan-template TItem
  *
- * @template-extends ArrayInterface<array-key, TItem>
+ * @extends CollectionInterface<TItem>
+ * @template-extends CollectionInterface<TItem>
  */
-interface StackInterface extends ArrayInterface
+interface StackInterface extends CollectionInterface
 {
     /**
      * Inserts an object at the top of the stack.
@@ -43,6 +44,17 @@ interface StackInterface extends ArrayInterface
      * @phpstan-return TItem|null
      */
     public function peek(): mixed;
+
+    /**
+     * Checks if collection contains item
+     *
+     * @param TItem $item
+     * @psalm-param TItem $item
+     * @phpstan-param TItem $item
+     *
+     * @return bool
+     */
+    public function contains(mixed $item): bool;
 
 //    /**
 //     * @param TItem $item

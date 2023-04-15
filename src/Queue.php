@@ -11,13 +11,16 @@ use Traversable;
  * @psalm-template TItem
  * @phpstan-template TItem
  *
- * @template-extends  AbstractArray<array-key, TItem>
+ * @extends Collection<TItem>
+ * @template-extends Collection<TItem>
+ *
+ * @implements QueueInterface<TItem>
  * @template-implements QueueInterface<TItem>
  */
-class Queue extends AbstractArray implements QueueInterface
+class Queue extends Collection implements QueueInterface
 {
     /**
-     * @param iterable<TItem> $items
+     * @param iterable<array-key, TItem> $items
      */
     public function __construct(iterable $items = []) {
         parent::__construct($items);
@@ -34,7 +37,7 @@ class Queue extends AbstractArray implements QueueInterface
      */
     public function enqueue(mixed $item): void
     {
-        $this[] = $item;
+        $this->items[] = $item;
     }
 
     /**
@@ -74,6 +77,20 @@ class Queue extends AbstractArray implements QueueInterface
         }
 
         return $this->items[$index];
+    }
+
+    /**
+     * Checks if collection contains item
+     *
+     * @param TItem $item
+     * @psalm-param TItem $item
+     * @phpstan-param TItem $item
+     *
+     * @return bool
+     */
+    public function contains(mixed $item): bool
+    {
+        return in_array($item, $this->items, true);
     }
 
     /**

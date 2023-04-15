@@ -73,11 +73,23 @@ class QueueTest extends TestCase
      *
      * @return void
      */
-    public function testSetWithObjects(): void
+    public function testQueueWithObjects(): void
     {
         $section = new Section("Section");
 
-        $queue = $this->createStack();
+        $queue = $this->createQueue();
+        $queue->enqueue($section);
+
+        foreach ($queue as $value) {
+            $this->assertSame($section, $value);
+        }
+    }
+
+    public function testQueueInterfaceWithObjects(): void
+    {
+        $section = new Section("Section");
+
+        $queue = $this->createQueueInterface();
         $queue->enqueue($section);
 
         foreach ($queue as $value) {
@@ -88,7 +100,15 @@ class QueueTest extends TestCase
     /**
      * @return Queue<Section>
      */
-    private function createStack(): Queue
+    private function createQueue(): Queue
+    {
+        return new Queue();
+    }
+
+    /**
+     * @return QueueInterface<Section>
+     */
+    private function createQueueInterface(): QueueInterface
     {
         return new Queue();
     }

@@ -130,64 +130,13 @@ class DictionaryTest extends TestCase
         );
     }
 
-    public function testOffsetExists(): void
-    {
-        $expected = "key";
-
-        $this->assertFalse($this->dictionary->offsetExists($expected));
-
-        $this->dictionary->offsetSet($expected, 'val');
-
-        $this->assertTrue($this->dictionary->offsetExists($expected));
-    }
-
-    public function testOffsetGet(): void
-    {
-        $key = "key";
-        $val = "val";
-
-        $this->assertNull($this->dictionary->offsetGet($key));
-
-        $this->dictionary->offsetSet($key, $val);
-
-        $this->assertEquals($val, $this->dictionary->offsetGet($key));
-    }
-
-    public function testOffsetSetWithoutKey(): void
-    {
-        $this->expectException(RuntimeException::class);
-        $this->dictionary->offsetSet(null, "dsa");
-    }
-
-    public function testOffsetSet(): void
-    {
-        $key = "key";
-        $val = "val";
-
-        $this->assertNull($this->dictionary->offsetGet($key));
-
-        $this->dictionary->offsetSet($key, $val);
-
-        $this->assertEquals($val, $this->dictionary->offsetGet($key));
-    }
-
-    public function testOffsetUnset(): void
-    {
-        $this->dictionary->add('one', 'test');
-        $this->assertEquals('test', $this->dictionary->offsetGet('one'));
-
-        $this->dictionary->offsetUnset('one');
-
-        $this->assertNull($this->dictionary->offsetGet('one'));
-    }
-
     public function testCount(): void
     {
         $this->dictionary->clear();
 
         $this->assertEquals(0, $this->dictionary->count());
 
-        $this->dictionary->offsetSet('asd', 'dsad');
+        $this->dictionary->add('asd', 'dsad');
 
         $this->assertEquals(1, $this->dictionary->count());
     }
@@ -203,17 +152,6 @@ class DictionaryTest extends TestCase
 
         $this->assertEquals(0, $this->dictionary->count());
 
-    }
-
-    public function testContains(): void
-    {
-        $expected = "some item";
-
-        $this->assertFalse($this->dictionary->containsValue($expected));
-
-        $this->dictionary->offsetSet('some', $expected);
-
-        $this->assertTrue($this->dictionary->contains($expected));
     }
 
     public function testIsEmpty(): void
@@ -240,6 +178,7 @@ class DictionaryTest extends TestCase
         $dictionary->add($section, $entry);
 
         foreach ($dictionary as $key => $value) {
+
             $this->assertSame($section, $key);
             $this->assertSame($entry, $value);
         }

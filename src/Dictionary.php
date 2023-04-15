@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ser\Collections;
 
 use OutOfRangeException;
-use RuntimeException;
 use Ser\Collections\Exception\Errors;
 use Ser\Collections\Utils\Hasher;
 use Traversable;
@@ -21,6 +20,8 @@ use Traversable;
  * @psalm-template TItem
  * @phpstan-template TItem
  *
+ *
+ * @implements DictionaryInterface<TKey, TItem>
  * @template-implements DictionaryInterface<TKey, TItem>
  */
 class Dictionary implements DictionaryInterface
@@ -143,99 +144,17 @@ class Dictionary implements DictionaryInterface
     }
 
     /**
+     * Get iterator
+     *
      * @return Traversable<TKey, TItem>
+     * @psalm-return Traversable<TKey, TItem>
+     * @phpstan-return Traversable<TKey, TItem>
      */
     public function getIterator(): Traversable
     {
         foreach ($this->items as $item) {
             yield $item->key => $item->value;
         }
-    }
-
-
-
-    /**
-     * Required by interface ArrayAccess.
-     *
-     * @param TKey $offset
-     * @psalm-param TKey $offset
-     * @phpstan-param TKey $offset
-     *
-     * @return bool
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->items[Hasher::hash($offset)]);
-    }
-
-    /**
-     * Required by interface ArrayAccess.
-     *
-     * @param TKey $offset
-     * @psalm-param TKey $offset
-     * @phpstan-param TKey $offset
-     *
-     * @return TItem|null
-     * @psalm-return TItem|null
-     * @phpstan-return TItem|null
-     */
-    public function offsetGet(mixed $offset): mixed
-    {
-        $hashKey = Hasher::hash($offset);
-
-        if (!isset($this->items[$hashKey])) {
-            return null;
-        }
-
-        return $this->items[$hashKey]->value;
-    }
-
-    /**
-     * Required by interface ArrayAccess.
-     *
-     * @param TKey $offset
-     * @psalm-param TKey $offset
-     * @phpstan-param TKey $offset
-     *
-     * @param TItem          $value
-     * @psalm-param TItem          $value
-     * @phpstan-param TItem          $value
-     *
-     * @return void
-     */
-    public function offsetSet(mixed $offset, mixed $value): void
-    {
-        if ($offset === null) {
-            throw new RuntimeException(Errors::DICTIONARY_KEY_NOT_SET);
-        }
-
-        $hashKey = Hasher::hash($offset);
-
-        $this->items[$hashKey] = new KeyValuePair($offset, $value);
-    }
-
-    /**
-     * Required by interface ArrayAccess.
-     *
-     * @param TKey $offset
-     * @psalm-param TKey $offset
-     * @phpstan-param TKey $offset
-     *
-     * @return void
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->items[$offset]);
-    }
-
-    /**
-     * @inheritDoc
-     *
-     * @return int<0, max>
-     */
-    public function count(): int
-    {
-        return count($this->items);
     }
 
     /**
@@ -249,17 +168,13 @@ class Dictionary implements DictionaryInterface
     }
 
     /**
-     * Checks if collection contains item
+     * @inheritDoc
      *
-     * @param TItem $item
-     * @psalm-param TItem $item
-     * @phpstan-param TItem $item
-     *
-     * @return bool
+     * @return int<0, max>
      */
-    public function contains(mixed $item): bool
+    public function count(): int
     {
-        return $this->containsValue($item);
+        return count($this->items);
     }
 
     /**

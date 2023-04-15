@@ -14,13 +14,16 @@ use Traversable;
  * @psalm-template TItem
  * @phpstan-template TItem
  *
- * @template-extends AbstractArray<array-key, TItem>
- * @template-implements ArrayInterface<array-key, TItem>
+ * @extends Collection<TItem>
+ * @template-extends Collection<TItem>
+ *
+ * @implements CollectionInterface<TItem>
+ * @template-implements CollectionInterface<TItem>
  */
-class HashSet extends AbstractArray implements ArrayInterface
+class HashSet extends Collection implements CollectionInterface
 {
     /**
-     * @param iterable<TItem> $items
+     * @param iterable<array-key, TItem> $items
      */
     public function __construct(iterable $items = []) {
         parent::__construct($items);

@@ -30,10 +30,14 @@ class HasherTest extends TestCase
         $this->assertEquals(spl_object_hash($key), Hasher::hash($key));
     }
 
+    /**
+     * @param array<string> $array
+     * @return void
+     */
     #[DataProvider('arrayKeysProvider')]
-    public function testArrayHash(array $key): void
+    public function testArrayHash(array $array = []): void
     {
-        $this->assertEquals(md5(serialize($key)) . '_a', Hasher::hash($key));
+        $this->assertEquals(md5(serialize($array)) . '_a', Hasher::hash($array));
     }
 
     /**
@@ -62,15 +66,15 @@ class HasherTest extends TestCase
     }
 
     /**
-     * @return array<array<array<int|string|object>>>
+     * @return array<array<array<string|int|object>>>
      */
     public static function arrayKeysProvider(): array
     {
         return [
-            [array(1,2,3)],
-            [array(new Section('name1'))],
-            [array(new Section('name2'),123)],
-            [array('string', new Section('name2'),123)],
+            [ array(1, 2, 3) ],
+            [ array(new Section('name1'), 123) ],
+            [ array(new Section('name2')) ],
+            [ array('string', new Section('name2'), 123) ],
         ];
     }
 }
